@@ -1,0 +1,17 @@
+.details-page{
+    pre{
+        word-wrap: break-word;
+    }
+    .back-link{
+        display: inline-block;
+        padding: 3px 5px;
+        border-radius: 4px;
+        background-color: rgb(8, 143, 8);
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        &:hover{
+            background-color: #000;
+        }
+    }
+}
