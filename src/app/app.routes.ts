@@ -6,5 +6,9 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: HomeComponent
+    },
+    {
+        path: 'issue-details/:number',
+        component: IssueDetailsComponent
     }
 ];
