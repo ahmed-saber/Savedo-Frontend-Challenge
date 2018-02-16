@@ -1,3 +1,19 @@
+// TOOLS
+.tools-bar{
+    background-color: #ccc;
+    padding: 5px;
+    line-height: 1;
+    .btn{
+        background-color: green;
+        color: #fff;
+        border-radius: 3px;
+        border: 0;
+        font-size: 10px;
+        &:hover{
+            background-color: #000;
+        }
+    }
+}
 // ISSUES LIST
 .issues-list-st1{
     border: 1px solid #e1e4e8;

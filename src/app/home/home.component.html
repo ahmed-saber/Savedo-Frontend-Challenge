@@ -7,6 +7,9 @@
         Fork ({{details.forks}})
     </span>
 </h1>
+<div class="tools-bar">
+    <input class="btn" type="button" value="Sort ({{direction}})" (click)="sortDirection()">
+</div>
 <ul class="issues-list-st1" *ngIf="issuesList.length">
     <li *ngFor="let issue of issuesList | paginate: { id:'githubissues', itemsPerPage: issuesList.length, currentPage: page, totalItems: details.open_issues_count}">
         <div class="more-details">

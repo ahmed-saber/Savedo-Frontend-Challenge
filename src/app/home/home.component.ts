@@ -9,6 +9,8 @@ import { ApiHandlerService } from '../services/api-handler.service';
 })
 
 export class HomeComponent {
+    direction:string = 'desc';
+    sortDirections:any[] = ['asc','desc'];
     page: number = 1;
     details;
     issuesList: any[] = [];
@@ -38,7 +40,7 @@ export class HomeComponent {
         const params = new HttpParams()
             .set('page', pageNum)
             .set('state', 'all')
-            .set('direction', 'desc');
+            .set('direction', this.direction);
         // RESET THE LIST
         this.issuesList = [];
         // CALL GITHUB ISSUES API
@@ -48,5 +50,14 @@ export class HomeComponent {
             // SAVE THE LIST
             this.issuesList = res;
         });
+    }
+
+    sortDirection(){
+        // CHANGE THE DIRECTION
+        let limit = this.sortDirections.length - 1;
+        let currentIndex = this.sortDirections.indexOf(this.direction);
+        this.direction = (currentIndex == limit) ? this.sortDirections[0] : this.sortDirections[currentIndex + 1];
+        // UPDATE
+        this.getListOfIssues(this.page);
     }
 }
