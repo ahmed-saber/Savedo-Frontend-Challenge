@@ -1,5 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { RouterModule } from '@angular/router';
+// SERVICES
+import { ApiHandlerService } from '../services/api-handler.service';
 
 describe('HomeComponent', () => {
     beforeEach(async(() => {
@@ -7,22 +12,46 @@ describe('HomeComponent', () => {
             declarations: [
                 HomeComponent
             ],
+            imports: [
+                RouterModule,
+                NgxPaginationModule,
+                HttpClientModule
+            ],
+            providers: [
+                ApiHandlerService
+            ]
         }).compileComponents();
     }));
+
     it('should create the app', async(() => {
         const fixture = TestBed.createComponent(HomeComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
-    it(`should have as title 'app'`, async(() => {
+
+    it(`should have getPage() method`, async(() => {
         const fixture = TestBed.createComponent(HomeComponent);
         const app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual('app');
+        expect(app.getPage).toBeTruthy();
     }));
-    it('should render title in a h1 tag', async(() => {
+
+    it(`should have getListOfIssues() method`, async(() => {
         const fixture = TestBed.createComponent(HomeComponent);
-        fixture.detectChanges();
-        const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+        const app = fixture.debugElement.componentInstance;
+        expect(app.getListOfIssues).toBeTruthy();
+    }));
+
+    it(`should have sortDirection() method`, async(() => {
+        const fixture = TestBed.createComponent(HomeComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app.sortDirection).toBeTruthy();
+    }));
+
+    it(`should have sortDirection() to be called`, async(() => {
+        const fixture = TestBed.createComponent(HomeComponent);
+        const app = fixture.debugElement.componentInstance;
+        spyOn(app,'sortDirection');
+        app.sortDirection();
+        expect(app.sortDirection).toHaveBeenCalled();
     }));
 });
