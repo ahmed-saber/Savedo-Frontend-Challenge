@@ -6,7 +6,7 @@ import { appRoutes } from './app.routes'
 // COMPONENTS
 import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
-
+import { IssueDetailsComponent } from './issue-details/issue-details.component';
 //https://github.com/michaelbromley/ngx-pagination
 import { NgxPaginationModule } from 'ngx-pagination';
 // SERVICES
@@ -16,7 +16,8 @@ import { ApiHandlerService } from '../app/services/api-handler.service';
 @NgModule({
     declarations: [
         LayoutComponent,
-        HomeComponent
+        HomeComponent,
+        IssueDetailsComponent
     ],
     imports: [
         RouterModule.forRoot(
