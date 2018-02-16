@@ -9,6 +9,8 @@ import { ApiHandlerService } from '../services/api-handler.service';
 })
 
 export class HomeComponent {
+    itemsPerPage:number = 30;
+    state:string = 'open';
     direction:string = 'desc';
     sortDirections:any[] = ['asc','desc'];
     page: number = 1;
@@ -39,7 +41,7 @@ export class HomeComponent {
         // PARAMS
         const params = new HttpParams()
             .set('page', pageNum)
-            .set('state', 'all')
+            .set('state', this.state)
             .set('direction', this.direction);
         // RESET THE LIST
         this.issuesList = [];
