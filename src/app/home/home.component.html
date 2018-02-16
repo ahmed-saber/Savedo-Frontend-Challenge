@@ -8,7 +8,7 @@
     </span>
 </h1>
 <ul class="issues-list-st1" *ngIf="issuesList.length">
-    <li *ngFor="let issue of issuesList">
+    <li *ngFor="let issue of issuesList | paginate: { id:'githubissues', itemsPerPage: issuesList.length, currentPage: page, totalItems: details.open_issues_count}">
         <div class="more-details">
             <svg class="svg" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
                 <path fill-rule="evenodd" d="M14 1H2c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1h2v3.5L7.5 11H14c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 9H7l-2 2v-2H2V2h12v8z"></path>
@@ -21,4 +21,5 @@
         <p>#{{issue.number}} by {{issue.user.login}}, state : <strong>{{issue.state}}</strong></p>
     </li>
 </ul>
+<pagination-controls *ngIf="issuesList.length" class="githubissues_pagination" id="githubissues" (pageChange)="getPage($event)"></pagination-controls>
 
