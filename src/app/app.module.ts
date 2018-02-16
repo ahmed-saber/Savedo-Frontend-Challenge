@@ -5,7 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { appRoutes } from './app.routes'
 // COMPONENTS
 import { LayoutComponent } from './layout/layout.component';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+
+//https://github.com/michaelbromley/ngx-pagination
+import { NgxPaginationModule } from 'ngx-pagination';
 // SERVICES
 import { ApiHandlerService } from '../app/services/api-handler.service';
 
@@ -20,7 +23,8 @@ import { ApiHandlerService } from '../app/services/api-handler.service';
             appRoutes
         ),
         BrowserModule,
-        HttpClientModule
+        HttpClientModule,
+        NgxPaginationModule
     ],
     providers: [
         ApiHandlerService
