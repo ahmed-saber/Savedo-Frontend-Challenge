@@ -16,7 +16,7 @@
             {{issue.comments}}
         </div>
         <h4>
-            <a>{{issue.title}}</a>
+            <a [routerLink]="['/issue-details', issue.number]">{{issue.title}}</a>
         </h4>
         <p>#{{issue.number}} by {{issue.user.login}}, state : <strong>{{issue.state}}</strong></p>
     </li>
