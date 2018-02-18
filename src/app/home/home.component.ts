@@ -16,14 +16,13 @@ export class HomeComponent {
     page: number = 1;
     details;
     issuesList: any[] = [];
-    promise;
 
     constructor(private ApiHandlerService: ApiHandlerService) {
     }
 
     ngOnInit() {
         // GET TOTAL COUNT FOR OPEND ISSUES
-        this.promise = this.ApiHandlerService.getGithubIssuesDetails().subscribe((res) => {
+        this.ApiHandlerService.getGithubIssuesDetails().subscribe(res => {
             this.details = res;
             // GET FIRST PAGE
             return this.getPage(1);
