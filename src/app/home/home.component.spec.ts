@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { ApiHandlerService } from '../services/api-handler.service';
 
 describe('HomeComponent', () => {
+    let app;
+    let fixture;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -21,36 +24,29 @@ describe('HomeComponent', () => {
                 ApiHandlerService
             ]
         }).compileComponents();
+        fixture = TestBed.createComponent(HomeComponent);
+        app = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
     }));
 
     it('should create the app', async(() => {
-        const fixture = TestBed.createComponent(HomeComponent);
-        const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
 
     it(`should have getPage() method`, async(() => {
-        const fixture = TestBed.createComponent(HomeComponent);
-        const app = fixture.debugElement.componentInstance;
         expect(app.getPage).toBeTruthy();
     }));
 
     it(`should have getListOfIssues() method`, async(() => {
-        const fixture = TestBed.createComponent(HomeComponent);
-        const app = fixture.debugElement.componentInstance;
         expect(app.getListOfIssues).toBeTruthy();
     }));
 
     it(`should have sortDirection() method`, async(() => {
-        const fixture = TestBed.createComponent(HomeComponent);
-        const app = fixture.debugElement.componentInstance;
         expect(app.sortDirection).toBeTruthy();
     }));
 
     it(`should have sortDirection() to be called`, async(() => {
-        const fixture = TestBed.createComponent(HomeComponent);
-        const app = fixture.debugElement.componentInstance;
-        spyOn(app,'sortDirection');
+        spyOn(app, 'sortDirection');
         app.sortDirection();
         expect(app.sortDirection).toHaveBeenCalled();
     }));
