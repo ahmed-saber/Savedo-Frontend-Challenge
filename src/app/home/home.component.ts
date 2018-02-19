@@ -11,8 +11,8 @@ import { ApiHandlerService } from '../services/api-handler.service';
 export class HomeComponent {
     itemsPerPage:number = 30;
     state:string = 'open';
-    direction:string = 'desc';
     sortDirections:any[] = ['asc','desc'];
+    direction:string = this.sortDirections[1];
     page: number = 1;
     details;
     issuesList: any[] = [];
@@ -45,12 +45,13 @@ export class HomeComponent {
         // RESET THE LIST
         this.issuesList = [];
         // CALL GITHUB ISSUES API
-        return this.ApiHandlerService.getGithubIssues({
-            params
-        }).subscribe((res: any[]) => {
+        let api = this.ApiHandlerService.getGithubIssues({params});
+        // LISTEN
+        api.subscribe((res: any[]) => {
             // SAVE THE LIST
             this.issuesList = res;
         });
+        return api;
     }
 
     sortDirection(){
