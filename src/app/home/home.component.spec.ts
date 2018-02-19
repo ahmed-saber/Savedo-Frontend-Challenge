@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ApiHandlerService } from '../services/api-handler.service';
 
 describe('HomeComponent', () => {
-    let app;
+    let app:HomeComponent;
     let fixture;
 
     beforeEach(async(() => {
@@ -26,28 +26,48 @@ describe('HomeComponent', () => {
         }).compileComponents();
         fixture = TestBed.createComponent(HomeComponent);
         app = fixture.debugElement.componentInstance;
-        fixture.detectChanges();
     }));
 
-    it('should create the app', async(() => {
+    it('should create the app', () => {
         expect(app).toBeTruthy();
-    }));
+    });
 
-    it(`should have getPage() method`, async(() => {
-        expect(app.getPage).toBeTruthy();
-    }));
+    describe('getPage()', () => {
+        it(`change the page number to 2`, () => {
+            app.getPage(2);
+            fixture.detectChanges();
+            expect(app.page).toEqual(2);
+        });
 
-    it(`should have getListOfIssues() method`, async(() => {
-        expect(app.getListOfIssues).toBeTruthy();
-    }));
+        it(`to call getListOfIssues()`, () => {
+            spyOn(app, 'getListOfIssues');
+            app.getPage(1);
+            fixture.detectChanges();
+            expect(app.getListOfIssues).toHaveBeenCalled();
+        });
+    });
 
-    it(`should have sortDirection() method`, async(() => {
-        expect(app.sortDirection).toBeTruthy();
-    }));
+    describe('getListOfIssues()', () => {
+        it(`to return results`, (done) => {
+            app.getListOfIssues(1).subscribe((res: any[]) => {
+                expect(app.issuesList.length).toBeGreaterThan(1);
+                done();
+            });
+        });
+    });
 
-    it(`should have sortDirection() to be called`, async(() => {
-        spyOn(app, 'sortDirection');
-        app.sortDirection();
-        expect(app.sortDirection).toHaveBeenCalled();
-    }));
+    describe('sortDirection()', () => {
+        it(`to change the direction`, () => {
+            app.sortDirection();
+            fixture.detectChanges();
+            expect(app.direction).toEqual(app.sortDirections[0]);
+        });
+
+        it(`to call getListOfIssues()`, () => {
+            spyOn(app, 'getListOfIssues');
+            app.sortDirection();
+            fixture.detectChanges();
+            expect(app.getListOfIssues).toHaveBeenCalled();
+        });
+    });
 });
